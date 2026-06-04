@@ -1,0 +1,85 @@
+VoxRT Wake-Word Model License
+
+Copyright (c) 2026 Elephant Enterprises LLC (d/b/a VoxRT).
+
+This license covers the `.vxrt` model file distributed via this
+GitHub repository:
+
+  voxrt_wake_word.vxrt
+
+The model weights are proprietary, trained in-house by Elephant
+Enterprises LLC on 100% synthetic data. No upstream model
+checkpoints, no copyleft or attribution obligations on the weights
+themselves.
+
+1. PERMITTED USES
+
+   You may use, link against, and redistribute this `.vxrt` file
+   as an unmodified part of the official `voxrt-wake-word-android`
+   or `voxrt-wake-word-ios` libraries at the version it was
+   resolved with.
+
+   Redistribution as part of your own consumer applications —
+   including commercial App Store / Play Store apps — is permitted
+   without per-installation fees, royalties, or registration, for
+   the on-device wake-phrase detection task the file is built for.
+
+   You may run the model on production user devices.
+
+2. RESTRICTIONS
+
+   You may not:
+
+   (a) Modify, repackage, or relink the `.vxrt` outside the
+       unmodified official VoxRT consumer libraries.
+
+   (b) Reverse engineer, decompile, disassemble, or otherwise
+       attempt to derive the underlying weight tensors, the model
+       topology beyond what is publicly described in the VoxRT
+       documentation, or any other internal state of the file.
+
+   (c) Bypass, defeat, or remove the AES-256-GCM encryption that
+       protects the weights at rest (per ADR-0023), nor distribute
+       a decrypted copy of the weights.
+
+   (d) Train derivative wake-word models from outputs produced
+       by this model on real user audio, or build distillation /
+       knowledge-extraction pipelines that depend on this model
+       producing soft targets.
+
+3. WAKE-PHRASE SCOPE
+
+   The default model detects the phrase "Hey Assistant" only.
+   Custom phrases (your own brand name, multi-phrase detection,
+   language extension) are part of the commercial VoxRT SDK tier.
+   Contact help@voxrt.com for custom-phrase model training.
+
+4. NO WARRANTY
+
+   THE MODEL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   NONINFRINGEMENT. WAKE-PHRASE DETECTION IS A STATISTICAL TASK;
+   THE MODEL WILL MISS SOME LEGITIMATE TRIGGERS AND FIRE ON SOME
+   NON-TRIGGER AUDIO. CONSUMER APPLICATIONS MUST ASSUME BOTH
+   FAILURE MODES CAN OCCUR AND DESIGN ACCORDINGLY.
+
+   IN NO EVENT SHALL ELEPHANT ENTERPRISES LLC BE LIABLE FOR ANY
+   CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM YOUR USE OF
+   THE MODEL.
+
+5. GOVERNING LAW
+
+   This License is governed by the laws of the State of Delaware,
+   United States of America, without regard to its conflict-of-
+   laws provisions.
+
+6. ENTIRE AGREEMENT
+
+   This License is the entire agreement between you and Elephant
+   Enterprises LLC concerning the model. It supersedes any prior
+   discussions or oral statements.
+
+Elephant Enterprises LLC may revise this License in future
+releases. Pin a specific version of the model in your application
+to keep the License terms you accepted stable across upgrades.
